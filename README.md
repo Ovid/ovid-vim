@@ -72,6 +72,20 @@ then switched to Subversion, and now use git. I should learn to use
     ,cd: code commit (you cannot commit without a review)
     ,c1: find first commit with the current <cword>
 
+The following are in the git section because they use git internally.
+
+Prompt for a search term and search your `lib/` directory for it.
+
+    ,g
+
+Same as `,g`, but also search your `t/` directory.
+
+    ,G
+
+Same as `,g`, but search for whatever `<cword>` your cursor is on.
+
+    ,f
+
 ## Vim
 
 When you edit yoru `.vimrc` file, we automatically pick up the changes with:
@@ -90,6 +104,7 @@ Edit your `.vimrc`:
 
 The various tools require the following modules:
 
+* App::Ack
 * Data::Dumper
 * Data::Dumper::Simple
 * File::Path

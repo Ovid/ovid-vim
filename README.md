@@ -88,7 +88,7 @@ Edit your `.vimrc`:
 
 ## Perl
 
-These are often miserable hacks, but the work for me. They assume that when
+These are often miserable hacks, but they work for me. They assume that when
 you are in a Perl project, you stay in the home directory of said project (in
 other words, you don't `cd t` or `cd lib/My/Project`).
 
@@ -136,7 +136,7 @@ figure it out.
     ,S
 
 Runs a modified `perl -c` on the current buffer. Uses `warnings::unused` and
-`Vi::QuicFix`. See also [this blog
+`Vi::QuickFix`. See also [this blog
 post](http://blogs.perl.org/users/ovid/2010/11/vims-quickfix-mode-and-perl.html).
 
     ,c

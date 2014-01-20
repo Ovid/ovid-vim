@@ -97,10 +97,9 @@ The various tools require the following modules:
 * File::Temp
 * Getopt::Long
 * IO::All
-* IO::All;
 * Modern::Perl
-* Pod::Stripper;
-* Term::ANSIColor;
+* Pod::Stripper
+* Term::ANSIColor
 * Test::Most
 * Vi::QuickFix
 * warnings::unused

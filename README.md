@@ -88,6 +88,23 @@ Edit your `.vimrc`:
 
 ## Perl
 
+The various tools require the following modules:
+
+* Data::Dumper
+* Data::Dumper::Simple
+* File::Path
+* File::Spec::Functions
+* File::Temp
+* Getopt::Long
+* IO::All
+* IO::All;
+* Modern::Perl
+* Pod::Stripper;
+* Term::ANSIColor;
+* Test::Most
+* Vi::QuickFix
+* warnings::unused
+
 These are often miserable hacks, but they work for me. They assume that when
 you are in a Perl project, you stay in the home directory of said project (in
 other words, you don't `cd t` or `cd lib/My/Project`).

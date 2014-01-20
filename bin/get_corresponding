@@ -1,0 +1,49 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use File::Spec::Functions qw(splitpath rootdir);
+use File::Path 'make_path';
+
+# this needs a lot of work. In particular, I need to be able to customize this
+# per vim project
+
+my $name = shift @ARGV;
+my $corresponding;
+my $root = 't/tests/TestsFor/';
+
+if ( $name =~ /::/ ) {
+
+    # they've given us a module name
+    my $path = $root;
+    if ( $name =~ s/^TestsFor::// ) {
+        $path = 'lib/';
+    }
+    $corresponding = join '/' => split '::' => $name;
+    $corresponding = "$path$corresponding.pm";
+}
+else {
+
+    # we assume they've given us a path name
+    $corresponding = $name;
+    unless ( $corresponding =~ s{^lib/}{$root} ) {
+        $corresponding =~ s{\b$root}{lib/};
+    }
+}
+
+exit if $corresponding eq $name;
+
+if ( -e $corresponding && -f _ ) {
+    print $corresponding;
+    exit;
+}
+
+my $rootdir = rootdir($corresponding);
+exit unless -e $rootdir;
+
+my ( undef, $path, undef ) = splitpath($corresponding);
+unless ( -e $path ) {
+    make_path($path) or exit;
+}
+print $corresponding;

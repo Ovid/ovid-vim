@@ -1,0 +1,7 @@
+#!/usr/bin/env perl
+
+use 5.10.0;
+my $module = shift @ARGV;
+eval "use $module";
+die "Cannot load $module: $@" if $@;
+say $module->VERSION;

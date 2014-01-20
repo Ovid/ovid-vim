@@ -1,0 +1,60 @@
+#!1/usr/bin/env perl
+
+use Modern::Perl;
+use Pod::Stripper;
+use File::Temp 'tempfile';
+use IO::All;
+use Term::ANSIColor;
+
+my ( undef, $tempfile ) = tempfile();
+my $perl = shift @ARGV // die "Usage: $0 perlfile";
+my $stripper = Pod::Stripper->new;
+
+$stripper->parse_from_file( $perl, $tempfile );
+my $output;
+$output < io($tempfile);
+
+my %count_for;
+my $longest = length('subroutine');
+while ( $output =~ /\bsub\s+(\w+)\b/g ) {
+    my $subroutine = $1;
+    if ( exists $count_for{$subroutine} ) {
+        warn "Subroutine ($subroutine) appears to be redefined";
+        next;
+    }
+    $longest = length($subroutine) if length($subroutine) > $longest;
+
+    # later we will count subs, but we don't count the declaration
+    $count_for{$subroutine} = -1;
+}
+foreach my $subroutine ( keys %count_for ) {
+    while ( $output =~ /\b$subroutine\b/g ) {
+        $count_for{$subroutine}++;
+    }
+}
+
+print color 'bold blue';
+say "File: $perl";
+print color 'reset';
+if ( keys %count_for ) {
+    my $format = "%-${longest}s\t\t%s\n";
+    printf $format => 'Subroutine', 'Times seen';
+    foreach my $subroutine ( sort grep { !/^_/ } keys %count_for ) {
+        my $times_seen = $count_for{$subroutine};
+        print color $times_seen ? 'bold green' : 'bold yellow';
+        printf $format => $subroutine, $times_seen;
+        print color 'reset';
+    }
+    foreach my $subroutine ( sort grep { /^_/ } keys %count_for ) {
+        my $times_seen = $count_for{$subroutine};
+        print color $times_seen ? 'bold green' : 'red';
+        printf $format => $subroutine, $times_seen;
+        print color 'reset';
+    }
+}
+else {
+    print color 'bold white';
+    say 'No subroutines found';
+    print color 'reset';
+    exit;
+}

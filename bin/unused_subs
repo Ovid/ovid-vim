@@ -1,0 +1,8 @@
+#!/bin/bash
+ack -h --output='$1' '^\s*sub\s+(\w+)\b' lib \
+| sort -u \
+| while read subname ; do
+    export subname
+    git grep -c -w -F "$subname" \
+    | awk -F: '{t+=$2} END{if(t<2) print ENVIRON["subname"]}'
+done

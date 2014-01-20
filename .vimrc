@@ -171,7 +171,7 @@ function! SetMySQL()
 endfunction
 
 noremap <silent> ,g :call MyGrep("lib/")<cr>
-noremap <silent> ,G :call MyGrep("lib/ t/ aggtests/ deps_patched/")<cr>
+noremap <silent> ,G :call MyGrep("lib/ t/")<cr>
 noremap <silent> ,f :call MyGrep("lib/", expand('<cword>'))<cr>
 
 

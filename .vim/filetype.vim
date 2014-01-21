@@ -1,6 +1,7 @@
-if exists('did_load_filetypes')
+if exists('g:did_load_filetypes')
     finish
 endif
+let g:did_load_filetypes = 1
 
 augroup filetypedetect
     autocmd! BufNewFile,BufRead *.tt         setf tt2html

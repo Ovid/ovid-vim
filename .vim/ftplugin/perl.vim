@@ -178,7 +178,7 @@ function! AddDataDumper()
     call append(number + 0, "use Data::Dumper::Simple;")
     call append(number + 1, "local $Data::Dumper::Indent   = 1;")
     call append(number + 2, "local $Data::Dumper::Sortkeys = 1;")
-    call append(number + 3, "print STDERR Dumper( )")
+    call append(number + 3, "print STDERR Dumper( );")
     execute ":call cursor(" . (number+4) . ",21)"
     execute ":startinsert"
 endfunction

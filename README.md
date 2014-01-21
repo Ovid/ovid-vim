@@ -23,6 +23,14 @@ I also **DO NOT CLAIM THIS IS SUITABLE FOR ANYONE ELSE**. You've been warned.
 It's only here because people ask for it. Also, note that some things I've
 told people about are not here because I need to clean up my code even more.
 
+# FILES TO READ
+
+You probably would be most interested in:
+
+* `.vimrc`
+* `.vim/filetype.vim`
+* `.vim/ftplugin/perl.vim`
+
 # MAPPINGS
 
 I've set my leader to the comma. The comma is actually a command in vim:

@@ -41,6 +41,7 @@ function! s:PythonMappings()
 endfunction
 
 function! s:PerlTestMappings()
+    setfiletype perl
 
     " run the current test with prove
     noremap <buffer> <leader>r :!prove -vl %<cr>

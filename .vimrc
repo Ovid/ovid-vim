@@ -139,7 +139,6 @@ function! RunTestMethod()
     call RestorePosition() 
 endfunction
 
-"au! FileType perl :noremap K  :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
 vnoremap <leader>xf  :!xmllint --format -<cr>  " only work in 'visual' mode
 
 function! Xpath()

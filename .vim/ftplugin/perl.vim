@@ -15,6 +15,7 @@ endif
 let g:did_PERL_ftplugin = 1
 
 setlocal iskeyword+=:
+noremap K  :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
 
 " Adds a Data::Dumper call and positons your cursor, in insert mode, in the
 " middle of the Dumper() parens

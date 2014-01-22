@@ -43,6 +43,9 @@ change your leader by resetting it at the top of the `.vimrc` file.
 
 ## Basics
 
+When in Perl, typing `K` when on a module name or keyword will attempt to
+launch `perldoc` with the appropriate documentation.
+
 Common commands I use:
 
 Command | Description

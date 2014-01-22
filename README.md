@@ -22,6 +22,8 @@ I never documented this code properly because no one else was every using it.
 I also **DO NOT CLAIM THIS IS SUITABLE FOR ANYONE ELSE**. You've been warned.
 It's only here because people ask for it. Also, note that some things I've
 told people about are not here because I need to clean up my code even more.
+This also means that some things may not work as expected because I did so
+much cleanup.
 
 # FILES TO READ
 

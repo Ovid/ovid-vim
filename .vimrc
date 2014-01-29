@@ -148,17 +148,6 @@ function! Xpath()
     echo system(command)
 endfunction
 
-au! BufNewFile,BufRead *.pm
-    \ if getline(1) =~ 'package TestsFor'         |
-    \     call PerlTestMappings()                 |
-    \ if getline(1) =~ 'package Tests::For'       |
-    \     call PerlTestMappings()                 |
-    \ elseif bufname("%") =~ 't/TestsFor/'        |
-    \     call PerlTestMappings()                 |
-    \ else                                        |
-    \     call PerlMappings()                     |
-    \ endif
-
 au! Bufread,BufNewFile .git/* set textwidth=78
 
 " this is for MySQL's 'edit' command while in the client

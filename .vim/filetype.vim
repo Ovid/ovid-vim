@@ -7,8 +7,7 @@ augroup filetypedetect
     autocmd! BufNewFile,BufRead *.tt         setf tt2html
     autocmd! BufNewFile,BufRead wrapper      setf tt2html
     autocmd! BufNewFile,BufRead /tmp/sql*    setf mysql " syntax highlighting in mysql editing
-    autocmd! BufRead,BufNewFile *.pl         setfiletype perl
-    autocmd! BufRead,BufNewFile *.pm         setfiletype perl
+    autocmd! BufRead,BufNewFile *.pl,*.pm    setfiletype perl
     autocmd! BufRead,BufNewFile *.yml        setfiletype yaml
     autocmd! BufRead,BufNewFile *.inc        setfiletype tmpl
     autocmd! BufRead,BufNewFile *.tmpl       setfiletype tmpl
@@ -40,8 +39,23 @@ function! s:PythonMappings()
     noremap <buffer> <leader>r :!python "%"<CR>
 endfunction
 
+au! BufNewFile,BufRead *.pm
+    \ if getline(1) =~ 'package TestsFor'         |
+    \     call s:PerlTestMappings()                 |
+    \ if getline(1) =~ 'package Tests::For'       |
+    \     call s:PerlTestMappings()                 |
+    \ elseif bufname("%") =~ 't/tests/'           |
+    \     call s:PerlTestMappings()                 |
+    \ else                                        |
+    \     call PerlMappings()                     |
+    \ endif
+
 function! s:PerlTestMappings()
     setfiletype perl
+    setlocal statusline+=%(\ %{PerlCurrentSubName()}%)
+    setlocal statusline+=%=
+    setlocal statusline+=%f\ 
+    setlocal statusline+=%P\ 
 
     " run the current test with prove
     noremap <buffer> <leader>r :!prove -vl %<cr>

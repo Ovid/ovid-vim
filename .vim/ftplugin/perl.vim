@@ -14,6 +14,14 @@ if exists("g:did_PERL_ftplugin")
 endif
 let g:did_PERL_ftplugin = 1
 
+"if ! exists("g:did_perl_statusline")
+    setlocal statusline+=%(\ %{PerlCurrentSubName()}%)
+    setlocal statusline+=%=
+    setlocal statusline+=%f\ 
+    setlocal statusline+=%P\ 
+"    let g:did_perl_statusline = 1
+"endif
+
 setlocal iskeyword+=:
 noremap K  :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
 
@@ -51,14 +59,6 @@ vnoremap <silent> ,r :!perl ~/bin/validperl<cr>
 " This makes the status line work *only* for the first perl file loaded, but
 " if I don't do it this way, the statusline has this check appended each time
 " the buffer is visited.  How to fix this?
-
-"if ! exists("g:did_perl_statusline")
-    setlocal statusline+=%(\ %{PerlCurrentSubName()}%)
-    setlocal statusline+=%=
-    setlocal statusline+=%f\ 
-    setlocal statusline+=%P\ 
-"    let g:did_perl_statusline = 1
-"endif
 
 function! PerlTest(testfile)
     new +setf\ TAPVerboseOutput
